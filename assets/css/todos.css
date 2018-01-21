@@ -1,0 +1,12 @@
+.strike-off{
+    text-decoration: line-through;
+    color: grey;
+}
+
+input[type='text']{
+    display:none;
+}
+
+#signal{
+    display:none;
+}
