@@ -1,9 +1,9 @@
 
-var str_btn_selector = "button";
+var str_btn_selector = "h1 span i";
 var str_input_selector = "input[type='text']";
 var str_ul_selector = ".todo-list";
 var str_li_selector = "li";
-var str_delete_btn_selector = "li span button";
+var str_delete_btn_selector = "li span i";
 var str_display_selector = "#signal";
 
 function alertAction(input_text, type) {
@@ -21,18 +21,18 @@ function alertAction(input_text, type) {
     var alert_tab = $(str_display_selector);
     alert_tab.addClass(alert_type);
     alert_tab.text(input_text);
-    alert_tab.fadeToggle().delay(250).fadeToggle(function () {
+    alert_tab.fadeToggle().delay(400).fadeToggle(function () {
         alert_tab.removeClass(alert_type);
     });
 }
 function addNewTodo(){
     var input_text = $(str_input_selector).val();
     if(isValidTodo(input_text)){
-        $(str_ul_selector).append("<li><span><button class='delete'>X</button></span><span>"+ input_text +"</span></li>");
+        $(str_ul_selector).append("<li><span class='icond'><i class='fa fa-trash delete'></i></span><span class='text-span'>" + input_text +"</span></li>");
         alertAction("TODO: " + input_text + " added", "success");
     }else{
         //Do not add the todo. Optionally show some negative response.
-        alertAction("ERROR, Not valid todo", "warning");
+        alertAction("Please enter a TODO", "warning");
     }
     $(str_input_selector).val("");
 }
@@ -63,7 +63,7 @@ $(str_ul_selector).on("click", str_delete_btn_selector, function () {
     var li = $(this).parent().parent();
     li.remove();
     //May need to remove this line when using fontawesome.
-    var text = li.text().substr(1);
+    var text = li.text();
     alertAction("TODO: " + text + " deleted!", "danger");
 });
 
